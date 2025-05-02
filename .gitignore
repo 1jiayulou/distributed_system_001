@@ -1,0 +1,70 @@
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.iml
+
+# Build directories
+/target/
+/build/
+/out/
+
+# Logs
+*.log
+logs/
+log/
+
+# Spring Boot local config override
+application-local.yml
+application-local.properties
+bootstrap-local.yml
+bootstrap-local.properties
+
+# If you want to ignore all application*.yml
+# Uncomment below if config center handles all configs
+# application*.yml
+# bootstrap*.yml
+
+# IDEA
+.idea/
+*.iws
+*.ipr
+*.iml
+*.swp
+
+# Eclipse
+.project
+.classpath
+.settings/
+bin/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node (if frontend inside project)
+node_modules/
+
+# test reports
+/test-output/
+/surefire-reports/
+
+# Docker
+*.pid
+*.seed
+
+# Git
+*.orig
+
+# Spring Cloud Config Server temporary repo
+/config-repo/
+
+# Optional: ignore env files
+.env
+.env.*
+
+
+# Project exclude paths
+/services/service-order/target/
+/services/service-product/target/
