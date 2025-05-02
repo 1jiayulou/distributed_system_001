@@ -1,6 +1,7 @@
 package com.jiayulou.order.service.impl;
 
 import com.jiayulou.order.bean.Order;
+import com.jiayulou.order.feign.ProductFeignClient;
 import com.jiayulou.order.service.OrderService;
 import com.jiayulou.product.bean.Product;
 import lombok.extern.slf4j.Slf4j;
@@ -20,18 +21,22 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
-    RestTemplate restTemplate;
+    private RestTemplate restTemplate;
 
     @Autowired
-    DiscoveryClient discoveryClient;
+    private DiscoveryClient discoveryClient;
 
     @Autowired
-    LoadBalancerClient loadBalancerClient;
+    private LoadBalancerClient loadBalancerClient;
+
+    @Autowired
+    private ProductFeignClient productFeignClient;
 
     @Override
     public Order createOrder(Long userId, Long productId) {
         List<Product> productList = new ArrayList<>();
-        Product product = getProductFromRemoteWithLoadBalanceAnnotion(productId);
+        //Product product = getProductFromRemoteWithLoadBalanceAnnotion(productId);
+        Product product = productFeignClient.getProductById(productId);
         productList.add(product);
         Order order = new Order(1L,  product.getPrice().multiply(new BigDecimal(product.getNum())), userId, "zhangSan", "Canada", productList);
         return order;

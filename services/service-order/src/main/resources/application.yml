@@ -1,0 +1,23 @@
+server:
+  port: 8000
+spring:
+  profiles:
+    active: dev
+    include: feign
+  application:
+    name: service-order
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        import-check:
+          enabled: false
+        namespace: dev
+  config:
+    import:
+      - nacos:common.properties?group=order
+      - nacos:database.properties?group=order
+
+logging:
+  level.com.jiayulou.order.feign.MovieFeignClient: DEBUG
+
